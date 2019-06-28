@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="students")
+@Table(name="Student")
 public class Student {
 
     //define fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "student_id")
+    private int studentId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -51,9 +51,9 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String firstName, String lastName, int gender, String parentName, String parentPhoneNumber, Date birthDate,
+    public Student(int studentId, String firstName, String lastName, int gender, String parentName, String parentPhoneNumber, Date birthDate,
                    int schoolId, int classId, String teacherId, String medicine, String specialCase) {
-        this.id = id;
+        this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -70,11 +70,11 @@ public class Student {
     //define getter/setter
 
     public int getId() {
-        return id;
+        return studentId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getFirstName() {
@@ -172,7 +172,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
+                "id=" + studentId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", gender=" + gender +

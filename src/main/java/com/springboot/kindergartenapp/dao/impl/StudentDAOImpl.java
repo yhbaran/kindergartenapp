@@ -32,7 +32,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         //create the query
         Query<Student> theQuery =
-                currentSession.createQuery("from Students",Student.class);
+                currentSession.createQuery("from Student",Student.class);
 
         // execute query and get result list
         List<Student> students=theQuery.getResultList();
