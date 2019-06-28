@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="Student")
+@Table(name="Students")
 public class Student {
 
     //define fields
