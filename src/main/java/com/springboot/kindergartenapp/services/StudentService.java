@@ -1,10 +1,10 @@
-package com.springboot.kindergartenapp.dao;
+package com.springboot.kindergartenapp.services;
 
 import com.springboot.kindergartenapp.entity.Student;
 
 import java.util.List;
 
-public interface StudentDAO {
+public interface StudentService {
 
     public List<Student> getAllStudent();
 

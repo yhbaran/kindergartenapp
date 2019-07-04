@@ -2,10 +2,9 @@ package com.springboot.kindergartenapp.Rest;
 
 import com.springboot.kindergartenapp.dao.StudentDAO;
 import com.springboot.kindergartenapp.entity.Student;
+import com.springboot.kindergartenapp.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,16 +12,37 @@ import java.util.List;
 @RequestMapping("/api")
 public class StudentController {
 
-    private StudentDAO studentDAO;
+    private StudentService studentService;
 
     @Autowired
-    public StudentController(StudentDAO studentDAO) {
-        this.studentDAO = studentDAO;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @GetMapping("/getStudents")
     public List<Student> findAll(){
 
-        return studentDAO.getAllStudent();
+        return studentService.getAllStudent();
+    }
+
+    @GetMapping("/getStudents/{studentId}")
+    public Student getStudent(@PathVariable int studentId){
+
+        Student theStudent=studentService.findById(studentId);
+
+        if(theStudent == null){
+            throw new RuntimeException("Student id not found");
+            }
+        return theStudent;
+    }
+
+    @PostMapping("/addStudents")
+    public Student addStudent(@RequestBody Student theStudent){
+
+        theStudent.setId(0);
+
+        studentService.save(theStudent);
+
+        return theStudent;
     }
 }

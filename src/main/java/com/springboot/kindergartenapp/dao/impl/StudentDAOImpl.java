@@ -39,4 +39,34 @@ public class StudentDAOImpl implements StudentDAO {
 
         return students;
     }
+
+    @Override
+    public Student findById(int theId) {
+
+        Session currentSession=entityManager.unwrap(Session.class);
+
+        Student theStudent=currentSession.get(Student.class,theId);
+
+        return theStudent;
+    }
+
+    @Override
+    public void save(Student theStudent) {
+
+        Session currentSession=entityManager.unwrap(Session.class);
+
+        currentSession.save(theStudent);
+    }
+
+    @Override
+    public void deleteById(int theId) {
+
+        Session currentSession=entityManager.unwrap(Session.class);
+
+        Query theQuery= currentSession.createQuery("delete from students where id=:student_id");
+
+        theQuery.setParameter("student_id",theId);
+
+        theQuery.executeUpdate();
+    }
 }

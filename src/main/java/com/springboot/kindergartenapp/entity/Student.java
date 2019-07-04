@@ -1,6 +1,7 @@
 package com.springboot.kindergartenapp.entity;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.sql.Date;
 
 @Entity
@@ -26,7 +27,7 @@ public class Student {
     private String parentName;
 
     @Column(name = "parent_phone_num")
-    private String parentPhoneNumber;
+    private BigInteger parentPhoneNumber;
 
     @Column(name = "birth_date")
     private Date birthDate;
@@ -38,7 +39,7 @@ public class Student {
     private int classId;
 
     @Column(name = "teacher_id")
-    private String teacherId;
+    private int teacherId;
 
     @Column(name = "medicine")
     private String medicine;
@@ -51,8 +52,8 @@ public class Student {
     public Student() {
     }
 
-    public Student(int studentId, String firstName, String lastName, int gender, String parentName, String parentPhoneNumber, Date birthDate,
-                   int schoolId, int classId, String teacherId, String medicine, String specialCase) {
+    public Student(int studentId, String firstName, String lastName, int gender, String parentName, BigInteger parentPhoneNumber, Date birthDate,
+                   int schoolId, int classId, int teacherId, String medicine, String specialCase) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -109,11 +110,11 @@ public class Student {
         this.parentName = parentName;
     }
 
-    public String getParentPhoneNumber() {
+    public BigInteger getParentPhoneNumber() {
         return parentPhoneNumber;
     }
 
-    public void setParentPhoneNumber(String parentPhoneNumber) {
+    public void setParentPhoneNumber(BigInteger parentPhoneNumber) {
         this.parentPhoneNumber = parentPhoneNumber;
     }
 
@@ -141,11 +142,11 @@ public class Student {
         this.classId = classId;
     }
 
-    public String getTeacherId() {
+    public int getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(String teacherId) {
+    public void setTeacherId(int teacherId) {
         this.teacherId = teacherId;
     }
 
