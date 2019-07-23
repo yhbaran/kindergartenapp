@@ -37,4 +37,15 @@ public class StudentServiceImpl implements StudentService {
     public void deleteById(int theId) {
         studentDAO.deleteById(theId);
     }
+
+    @Override
+    public void update(Student student) {
+        studentDAO.update(student);
+    }
+
+    @Override
+    public boolean isExist(int studentId) {
+        return studentDAO.isExist(studentId);
+    }
+
 }

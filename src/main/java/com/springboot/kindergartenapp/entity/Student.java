@@ -11,7 +11,7 @@ public class Student {
     //define fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
+    @Column(name = "id")
     private int studentId;
 
     @Column(name = "first_name")
@@ -20,7 +20,7 @@ public class Student {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "gender")
+    @Column(name = "sex")
     private int gender;
 
     @Column(name = "parent_name")

@@ -19,24 +19,24 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/getStudents")
+    @GetMapping("/students")
     public List<Student> findAll(){
 
         return studentService.getAllStudent();
     }
 
-    @GetMapping("/getStudents/{studentId}")
+    @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId){
 
-        Student theStudent=studentService.findById(studentId);
-
-        if(theStudent == null){
+        if(!studentService.isExist(studentId)){
             throw new RuntimeException("Student id not found");
-            }
+        }
+
+        Student theStudent=studentService.findById(studentId);
         return theStudent;
     }
 
-    @PostMapping("/addStudents")
+    @PostMapping("/students")
     public Student addStudent(@RequestBody Student theStudent){
 
         theStudent.setId(0);
@@ -45,4 +45,27 @@ public class StudentController {
 
         return theStudent;
     }
+
+    @DeleteMapping("/students/{studentId}")
+    public boolean deleteStudent(@PathVariable int studentId){
+        if(!studentService.isExist(studentId)){
+            throw new RuntimeException("Student id not found");
+        }
+        studentService.deleteById(studentId);
+        return  true;
+    }
+
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student theStudent){
+
+        if(!studentService.isExist(theStudent.getId())){
+            throw new RuntimeException("Student id not found");
+        }
+
+        studentService.update(theStudent);
+
+        return theStudent;
+    }
+
+
 }

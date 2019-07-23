@@ -13,4 +13,8 @@ public interface StudentService {
     public void save(Student theStudent);
 
     public void deleteById(int theId);
+
+    public void update(Student student);
+
+    public boolean isExist(int studentId);
 }

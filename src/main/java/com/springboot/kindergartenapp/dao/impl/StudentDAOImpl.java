@@ -56,17 +56,43 @@ public class StudentDAOImpl implements StudentDAO {
         Session currentSession=entityManager.unwrap(Session.class);
 
         currentSession.save(theStudent);
+
     }
 
     @Override
+    @Transactional
     public void deleteById(int theId) {
 
         Session currentSession=entityManager.unwrap(Session.class);
 
-        Query theQuery= currentSession.createQuery("delete from students where id=:student_id");
+        Query theQuery= currentSession.createQuery("delete from Student where id=:student_id");
 
         theQuery.setParameter("student_id",theId);
 
         theQuery.executeUpdate();
     }
+
+    @Override
+    @Transactional
+    public void update(Student student) {
+        Session currentSession=entityManager.unwrap(Session.class);
+        currentSession.clear();
+        currentSession.update(student);
+
+    }
+
+    @Override
+    public boolean isExist(int studentId){
+
+        Session currentSession=entityManager.unwrap(Session.class);
+
+            Student theStudent=currentSession.get(Student.class,studentId);
+            if(theStudent==null)
+            return false;
+
+            return true;
+
+    }
+
+
 }
