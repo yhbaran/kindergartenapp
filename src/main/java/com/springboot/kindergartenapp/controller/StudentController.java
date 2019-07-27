@@ -1,6 +1,5 @@
-package com.springboot.kindergartenapp.Rest;
+package com.springboot.kindergartenapp.controller;
 
-import com.springboot.kindergartenapp.dao.StudentDAO;
 import com.springboot.kindergartenapp.entity.Student;
 import com.springboot.kindergartenapp.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class StudentController {
 
     private StudentService studentService;
@@ -19,13 +17,19 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/students")
-    public List<Student> findAll(){
+    @GetMapping("/students/{schoolId}")
+    public List<Student> findAll(@PathVariable int schoolId){
 
-        return studentService.getAllStudent();
+        return studentService.getAllStudent(schoolId);
     }
 
-    @GetMapping("/students/{studentId}")
+    @GetMapping("/students/class/{classId}")
+    public List<Student> findAllByClass(@PathVariable int classId){
+
+        return studentService.getAllStudentByClassId(classId);
+    }
+
+    @GetMapping("/student/{studentId}")
     public Student getStudent(@PathVariable int studentId){
 
         if(!studentService.isExist(studentId)){
@@ -36,7 +40,7 @@ public class StudentController {
         return theStudent;
     }
 
-    @PostMapping("/students")
+    @PostMapping("/student")
     public Student addStudent(@RequestBody Student theStudent){
 
         theStudent.setId(0);
@@ -46,7 +50,7 @@ public class StudentController {
         return theStudent;
     }
 
-    @DeleteMapping("/students/{studentId}")
+    @DeleteMapping("/student/{studentId}")
     public boolean deleteStudent(@PathVariable int studentId){
         if(!studentService.isExist(studentId)){
             throw new RuntimeException("Student id not found");
@@ -55,7 +59,7 @@ public class StudentController {
         return  true;
     }
 
-    @PutMapping("/students")
+    @PutMapping("/student")
     public Student updateStudent(@RequestBody Student theStudent){
 
         if(!studentService.isExist(theStudent.getId())){

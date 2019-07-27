@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface StudentDAO {
 
-    public List<Student> getAllStudent();
+    public List<Student> getAllStudent(int schoolId);
+
+    public List<Student> getAllStudentByClassId(int classId);
 
     public Student findById(int theId);
 
