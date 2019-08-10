@@ -23,7 +23,7 @@ public class ClassDAOImpl implements ClassDAO {
         Session currentSession=entityManager.unwrap(Session.class);
 
         Query<Classes> theQuery =
-                currentSession.createQuery("from Classes where id=:schoolId",Classes.class);
+                currentSession.createQuery("from Classes where school_id=:schoolId",Classes.class);
         theQuery.setParameter("schoolId",schoolId);
 
         List<Classes> classes=theQuery.getResultList();

@@ -47,13 +47,16 @@ public class Student {
     @Column(name = "special_case")
     private String specialCase;
 
+    @Column(name = "user_id")
+    private int userId;
+
     //define constuctors
 
     public Student() {
     }
 
     public Student(int studentId, String firstName, String lastName, int gender, String parentName, BigInteger parentPhoneNumber, Date birthDate,
-                   int schoolId, int classId, int teacherId, String medicine, String specialCase) {
+                   int schoolId, int classId, int teacherId, String medicine, String specialCase,int userId) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,6 +69,7 @@ public class Student {
         this.teacherId = teacherId;
         this.medicine = medicine;
         this.specialCase = specialCase;
+        this.userId = userId;
     }
 
     //define getter/setter
@@ -166,6 +170,17 @@ public class Student {
         this.specialCase = specialCase;
     }
 
+    public int getStudentId() { return studentId; }
+
+    public void setStudentId(int studentId) { this.studentId = studentId; }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     //define tostring
 
@@ -185,6 +200,7 @@ public class Student {
                 ", teacherId='" + teacherId + '\'' +
                 ", medicine='" + medicine + '\'' +
                 ", specialCase='" + specialCase + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }
